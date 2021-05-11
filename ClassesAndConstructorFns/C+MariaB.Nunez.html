@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FC</title>
+  </head>
+  <body>
+    <!--
+        Declarar un constructor Class (ES6) llamada Usuario que reciba:
+            -nombre (string)
+            -apellido (string)
+            -libros (array de objetos)
+            -mascotas (array de strings)
+        Implementar las propiedades instancia desde los valores recibidos como argumento y los siguientes métodos en su prototipo:
+            -getFullName() debe retornar un srting con el nombre y apellido del usuario
+            -addMascota() debe agregar una mascota al arreglo de mascotas, no debe retornar nada
+            -getMascotas() debe retornar la cantidad de mascotas que tiene un 
+            -addBook() recibe un string 'book' y un string 'autor' y debe agregar un objeto {nombre: book, autor: autor} al areglo de
+            libros del usuario. No debe retornar nada.
+            -getBooks() debe retornar un arreglo con solo los nombres del arrglo de libros del usuario
+    -->
+    <script>
+      const name = "María";
+      const lastname = "Núñez";
+      const books = [
+        { nombre: "Harry Potter", autor: "J.K.Rowling" },
+        { nombre: "Don Quijote", autor: "Miguel de Cervantes" },
+        { nombre: "La Odisea", autor: "Homero" },
+      ];
+      const pets = ["perro", "gato", "loro"];
+
+      class usuario {
+        constructor(nombre, apellido, libros, mascotas) {
+          this.nombre = nombre;
+          this.apellido = apellido;
+          this.libros = libros;
+          this.mascotas = mascotas;
+        }
+      }
+
+      usuario.prototype.getFullName = function () {
+        return `${this.nombre} ${this.apellido}`;
+      };
+
+      usuario.prototype.addMascota = function (nuevaMascota) {
+        this.mascotas = [...this.mascotas, nuevaMascota];
+      };
+
+      usuario.prototype.getMascotas = function () {
+        var contador = 0;
+        if (this.mascotas.length > 0) {
+          for (let index = 0; index <= this.mascotas.length; index++) {
+            contador = index;
+          }
+          return contador;
+        }
+        return "El usuario no tiene mascotas";
+      };
+
+      usuario.prototype.addBook = function (nombre, autor) {
+        this.libros = [...this.libros, { nombre: nombre, autor: autor }];
+      };
+
+      usuario.prototype.getBooks = function () {
+        if (this.libros.length > 0) {
+          this.libros.map((currentBook) => {
+            return currentBook.nombre;
+          });
+        }
+        return "El usuario no posee libros";
+      };
+
+      let maria = new usuario(name, lastname, books, pets);
+    </script>
+  </body>
+</html>
